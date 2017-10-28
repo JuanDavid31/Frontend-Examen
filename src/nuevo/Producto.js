@@ -4,18 +4,29 @@ class Producto extends Component{
 
     render(){
         return(
-            <div>
-                <label>Nombre</label>
-                <label>{this.props.nombre}</label>
-                <label>Precio</label>
-                <label>{this.props.precio}</label>
-                <label>Fecha</label>
-                <label>{this.props.fecha}</label>
-                <img src={this.props.urlImagen} alt="Comida!"></img>
-                <input type="button" value="Eliminar" onClick={this.eliminar}></input>
-                <ul>
-                    {this.darIngredientes()}
-                </ul>
+            <div className="card">
+                <div className="card-image">
+                    <img src={this.props.urlImagen || "http://via.placeholder.com/200x150"} alt="Comida!"></img>
+                </div>
+                <div className="card-content">
+                    <h5>{this.props.nombre}</h5>
+                    <div>
+                        <p>{"$" + this.props.precio}</p>
+                    </div>
+                    <div>
+                        <label>Fecha disponibilidad</label>
+                        <p>{this.props.fecha}</p>
+                    </div>
+                    <div id="ingredientes">
+                        <ul>
+                            {this.darIngredientes()}
+                        </ul>
+                    </div>
+                </div> 
+                <div className="card-action">
+                    <input type="button" value="Eliminar" onClick={this.eliminar}></input>
+                </div>
+                
             </div>
         );
     }

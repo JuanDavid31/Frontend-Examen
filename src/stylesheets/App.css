@@ -72,10 +72,30 @@ body, html {
     justify-content: center;
     align-items: center;
     padding: 20px; }
-    #rutas #menu #adicionar-producto {
-      height: 100%;
+    #rutas #menu button[type=submit] {
+      width: 100%;
+      height: 10%; }
+    #rutas #menu #productos {
+      width: 100%;
+      height: 90%;
+      overflow: auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; }
+      #rutas #menu #productos div {
+        width: 210px; }
+  #rutas #adicionar-producto {
+    height: 100%;
+    width: 60%;
+    padding: 20px; }
+    #rutas #adicionar-producto button[type=submit] {
       width: 100%; }
-      #rutas #menu #adicionar-producto button[type=submit] {
-        width: 100%; }
+  #rutas .card-content {
+    min-height: 300px;
+    max-height: 300px; }
+    #rutas .card-content #ingredientes {
+      max-height: 140px;
+      max-width: 170px;
+      overflow: auto; }
 
 /*# sourceMappingURL=App.css.map */

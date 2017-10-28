@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router';
+import {Input} from 'react-materialize';
 import $ from 'jquery';
 
 class AdicionarProducto extends Component{
@@ -11,24 +13,25 @@ class AdicionarProducto extends Component{
             ingredientes:"",
             precio:0,
             fecha:"",
-            idCategoria:-1
+            idCategoria:-1,
+            redireccionar:false
         }
     }
 
     render(){
+        if(this.state.redireccionar){
+            return <Redirect to={"/sucursal/" + this.props.match.params.id}/>
+        }
         return(
             <form id="adicionar-producto" onSubmit={this.adicionarProducto}>
                 <div className="input-field">
-                    <input id="nombre" type="text" className="validate" value={this.state.nombre} placeholder="Nombre" onChange={this.cambiarNombre}></input>
-                    <label htmlFor="nombre">Nombre</label>
+                    <input id="nombre" type="text" className="validate" value={this.state.nombre} placeholder="Nombre" onChange={this.cambiarNombre} required></input>
                 </div>
                 <div className="input-field">
-                    <input id="precio" type="number" min="0" step="1" className="validate" value={this.state.precio} placeholder="Precio" onChange={this.cambiarPrecio}></input>
-                    <label htmlFor="precio">Precio</label>
+                    <input id="precio" type="number" min="0" step="1" className="validate" value={this.state.precio} placeholder="Precio" onChange={this.cambiarPrecio} required></input>
                 </div>
-                <div className="input-field">
-                    <input id="fecha" type="text" className="datepicker" value={this.state.fecha} placeholder="Fecha" onChange={this.cambiarFecha}></input>    
-                    <label htmlFor="fecha">Fecha</label>
+                <div >
+                    <Input name='on' type='date' value={this.state.fecha} placeholder="Fecha" onChange={this.cambiarFecha}/>
                 </div>
                 <div>
                     <label>Categoria</label>
@@ -37,8 +40,7 @@ class AdicionarProducto extends Component{
                     </select>
                 </div>
                 <div className="input-field">
-                    <textarea id="ingredientes" className="materialize-textarea" value={this.state.ingredientes} placeholder="Separalos por comas (,)" onChange={this.cambiarIngredientes}></textarea>
-                    <label htmlFor="ingredientes">Ingredientes</label>
+                    <textarea id="ingredientes" className="materialize-textarea" value={this.state.ingredientes} placeholder="Ingredientes separados por comas (,)" onChange={this.cambiarIngredientes} required></textarea>
                 </div>
                 <button className="btn-large" type="submit">Adicionar producto
                     <i className="material-icons right">send</i>
@@ -47,19 +49,7 @@ class AdicionarProducto extends Component{
         );
     }
 
-    componentDidMount(){
-
-          //$('select').material_select('update');
-          $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-          });
-
-    
+    componentDidMount(){   
         fetch("https://stark-river-37912.herokuapp.com/categorias.json")
         .then(resp => resp.json())
         .then(json => this.setState({categorias:json, idCategoria:json[0].cId}))
@@ -119,14 +109,14 @@ class AdicionarProducto extends Component{
             }
         }
 
-        fetch("https://stark-river-37912.herokuapp.com/adicionarProducto/" + this.props.idSucursal + "/" + this.state.idCategoria, datos)
+        fetch("https://stark-river-37912.herokuapp.com/adicionarProducto/" + this.props.match.params.id + "/" + this.state.idCategoria, datos)
             .then(this.atenderRespuesta)
             .catch(err => console.log(err));
     }
     
     atenderRespuesta = (resp) =>{
-        if(resp.ok){ console.log("Producto adicionado")
-			this.props.actualizar();
+        if(resp.ok){ console.log("Producto adicionado"); //Usar un redirect
+			this.setState({redireccionar:true});
 		}else{
 			resp.text().then(text => console.log(text));
 		}
