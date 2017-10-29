@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router';
 import {Input} from 'react-materialize';
-import $ from 'jquery';
 
 class AdicionarProducto extends Component{
 
@@ -44,6 +43,9 @@ class AdicionarProducto extends Component{
                 </div>
                 <button className="btn-large" type="submit">Adicionar producto
                     <i className="material-icons right">send</i>
+                </button>
+                <button className="btn black" onClick={() =>{this.props.history.goBack()}}> 
+                    <i className="material-icons left">arrow_back</i>
                 </button>
             </form>
         );

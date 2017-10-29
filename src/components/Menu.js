@@ -51,6 +51,7 @@ class Menu extends Component{
         var productos = this.state.productos.map(producto =>{
             return <Producto key={producto.cId} 
                             id={producto.cId}
+                            idSucursal={this.props.match.params.id}
                             nombre={producto.dNombre}
                             precio={producto.nPrecio}
                             fecha={producto.fLimite}

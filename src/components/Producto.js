@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Producto extends Component{
 
@@ -6,7 +7,8 @@ class Producto extends Component{
         return(
             <div className="card">
                 <div className="card-image">
-                    <img src={this.props.urlImagen || "http://via.placeholder.com/200x150"} alt="Comida!"></img>
+                    <img src={this.props.urlImagen || "http://via.placeholder.com/200x150"} alt="Ruta incorrecta"></img>
+                    {this.darBotonFlotante()}
                 </div>
                 <div className="card-content">
                     <h5>{this.props.nombre}</h5>
@@ -24,7 +26,7 @@ class Producto extends Component{
                     </div>
                 </div> 
                 <div className="card-action">
-                    <input type="button" value="Eliminar" onClick={this.eliminar}></input>
+                    <button className="btn red lighten-2" type="submit" onClick={this.eliminar}>Eliminar</button>
                 </div>
                 
             </div>
@@ -63,6 +65,16 @@ class Producto extends Component{
             return <li key={ingrediente}>{ingrediente}</li>
         });
         return ingredientes;
+    }
+
+    darBotonFlotante = () =>{
+        if(this.props.urlImagen === null || this.props.urlImagen === ""){
+            return(
+                <Link to={"/foto/" + this.props.idSucursal + "/" + this.props.id} className="btn-floating halfway-fab waves-effect waves-light cyan">
+                    <i className="material-icons">add</i>
+                </Link>
+            ); 
+        }
     }
     
 }

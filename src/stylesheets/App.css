@@ -45,12 +45,14 @@ body, html {
           display: flex;
           align-items: center;
           justify-content: space-around;
-          text-align: center; }
+          text-align: center;
+          margin-bottom: 10px; }
           #rutas #dpizza #sucursales .sucursal .panel-superior :first-child {
             width: 50%;
             display: flex;
             justify-content: center;
-            height: 100%; }
+            height: 100%;
+            font-size: 20px; }
           #rutas #dpizza #sucursales .sucursal .panel-superior :last-child {
             width: 50%;
             height: 60px;
@@ -71,7 +73,8 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px; }
+    padding: 10px;
+    padding-bottom: 0px; }
     #rutas #menu button[type=submit] {
       width: 100%;
       height: 10%; }
@@ -83,19 +86,31 @@ body, html {
       justify-content: space-around;
       flex-wrap: wrap; }
       #rutas #menu #productos div {
-        width: 210px; }
-  #rutas #adicionar-producto {
+        width: 200px; }
+      #rutas #menu #productos img {
+        height: 150px;
+        width: 200px; }
+  #rutas form {
     height: 100%;
     width: 60%;
     padding: 20px; }
-    #rutas #adicionar-producto button[type=submit] {
+    #rutas form button[type=submit] {
       width: 100%; }
   #rutas .card-content {
-    min-height: 300px;
-    max-height: 300px; }
+    min-height: 280px;
+    max-height: 280px; }
     #rutas .card-content #ingredientes {
       max-height: 140px;
       max-width: 170px;
       overflow: auto; }
+  #rutas .card-action {
+    padding-top: 12px;
+    padding-bottom: 12px; }
+  #rutas #subir-foto {
+    height: 100%;
+    width: 60%; }
+    #rutas #subir-foto form {
+      width: 100%;
+      height: initial; }
 
 /*# sourceMappingURL=App.css.map */

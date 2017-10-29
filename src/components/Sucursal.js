@@ -17,11 +17,11 @@ class Sucursal extends Component{
             <div className="sucursal hoverable card-panel">
                 <div className="panel-superior">
                     <Link to={"/sucursal/" + this.props.id}>{this.props.nombre}</Link>
-                    <label>{this.props.direccion}</label>
+                    <p>{this.props.direccion}</p>
                 </div>
                 <div className="panel-inferior">
-                    <Link className="btn green accent-3" to={"/editarSucursal/" + this.props.id}>Editar</Link>
-                    <input className="btn deep-orange accent-3" type="submit" value="Eliminar" onClick={this.eliminar}></input>
+                    <Link className="btn teal darken-4" to={"/editarSucursal/" + this.props.id}>Editar</Link>
+                    <input className="btn red lighten-2" type="submit" value="Eliminar" onClick={this.eliminar}></input>
                 </div>
             </div>
         );
